@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Схемы и теория · Лабораторная №5</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <main class="standalone">
+    <a class="back-link" href="../index.html">← К компонентам</a>
+    <header class="page-heading">
+      <p class="eyebrow"><span class="dot"></span> ЛР 05 / Материалы к защите</p>
+      <h1>Схемы и теория</h1>
+      <p>Алгоритмы семи компонентов, схема проверки без JavaScript и ответы на девять контрольных вопросов.</p>
+    </header>
+    <nav class="docs-nav" aria-label="Материалы">
+      <a class="button button-primary" href="#algorithms">Блок-схемы</a>
+      <a class="button button-secondary" href="#questions">Контрольные вопросы</a>
+    </nav>
+    <section class="docs-section" id="algorithms" aria-labelledby="algorithms-title">
+      <h2 id="algorithms-title">Алгоритмы и блок-схемы</h2>
+      <article class="card algorithm" id="algorithm-counter">
+          <h3>01. Счётчик кликов</h3>
+          <div class="algorithm-grid">
+            <ol><li>При загрузке создаём переменную <code>count</code> со значением 0. В HTML сначала показан ноль.</li><li>При клике «+1 Клик» увеличиваем <code>count</code> на единицу. При сбросе записываем 0.</li><li>Выводим значение через <code>textContent</code>. Пока значение равно нулю, кнопка сброса недоступна.</li></ol>
+            <figure>
+              <a href="diagrams/counter.svg" aria-label="Открыть блок-схему: Счётчик кликов"><img loading="lazy" src="diagrams/counter.svg" alt="Блок-схема: Счётчик кликов"></a>
+              <figcaption>Нажмите на схему, чтобы открыть её крупнее</figcaption>
+            </figure>
+          </div>
+        </article> <article class="card algorithm" id="algorithm-countdown">
+          <h3>03. Таймер обратного отсчёта</h3>
+          <div class="algorithm-grid">
+            <ol><li>Читаем длительность: целое число от 1 до 3599 секунд. Переводим его в миллисекунды. При неверном вводе показываем ошибку.</li><li>При запуске запоминаем момент окончания: <code>performance.now() + remaining</code>. Включаем <code>setInterval</code>.</li><li>На каждом тике вычитаем текущее время из времени окончания. Показываем остаток в формате ММ:СС и заполняем шкалу. На нуле останавливаем интервал.</li><li>Пауза запоминает остаток и останавливает интервал. Продолжение вычисляет новый момент окончания. Сброс возвращает последнюю корректную длительность.</li></ol>
+            <figure>
+              <a href="diagrams/countdown.svg" aria-label="Открыть блок-схему: Таймер обратного отсчёта"><img loading="lazy" src="diagrams/countdown.svg" alt="Блок-схема: Таймер обратного отсчёта"></a>
+              <figcaption>Нажмите на схему, чтобы открыть её крупнее</figcaption>
+            </figure>
+          </div>
+        </article> <article class="card algorithm" id="algorithm-accordion">
+          <h3>05. Аккордеон</h3>
+          <div class="algorithm-grid">
+            <ol><li>У каждого заголовка есть панель. При клике закрываем остальные панели и открываем выбранную. Повторный клик закрывает её.</li><li>Кнопки «А → Я» и «Я → А» сортируют массив строк по их названиям с помощью <code>sort()</code> и <code>Intl.Collator(&quot;ru&quot;)</code>.</li><li>Кнопки ↑ и ↓ меняют пункт местами с соседом. Перемещаем существующие элементы DOM, поэтому открытая панель остаётся открытой.</li><li>После перестановки блокируем ↑ у первого пункта и ↓ у последнего.</li></ol>
+            <figure>
+              <a href="diagrams/accordion.svg" aria-label="Открыть блок-схему: Аккордеон"><img loading="lazy" src="diagrams/accordion.svg" alt="Блок-схема: Аккордеон"></a>
+              <figcaption>Нажмите на схему, чтобы открыть её крупнее</figcaption>
+            </figure>
+          </div>
+        </article> <article class="card algorithm" id="algorithm-tabs">
+          <h3>08. Вкладки</h3>
+          <div class="algorithm-grid">
+            <ol><li>При загрузке видна первая панель. Каждая кнопка связана с панелью через <code>aria-controls</code>.</li><li>При клике или нажатии стрелки, Home или End определяем, какую вкладку выбрать.</li><li>У выбранной вкладки ставим <code>aria-selected=&quot;true&quot;</code> и показываем её панель. Остальные панели скрываем через <code>hidden</code>. При управлении с клавиатуры переносим фокус.</li></ol>
+            <figure>
+              <a href="diagrams/tabs.svg" aria-label="Открыть блок-схему: Вкладки"><img loading="lazy" src="diagrams/tabs.svg" alt="Блок-схема: Вкладки"></a>
+              <figcaption>Нажмите на схему, чтобы открыть её крупнее</figcaption>
+            </figure>
+          </div>
+        </article> <article class="card algorithm" id="algorithm-validation">
+          <h3>09. Форма с проверкой на JavaScript</h3>
+          <div class="algorithm-grid">
+            <ol><li>Перехватываем <code>submit</code> и отменяем отправку через <code>event.preventDefault()</code>.</li><li>Проверяем имя, почту и группу: длину и нужный формат. Для шаблонов используем регулярные выражения и <code>test()</code>.</li><li>Если есть ошибки, показываем их рядом с полями и переводим фокус на первое неверное поле. После первой проверки подсказки обновляются при вводе.</li><li>Если ошибок нет, выводим сообщение об успехе. Данные остаются на странице.</li></ol>
+            <figure>
+              <a href="diagrams/validation.svg" aria-label="Открыть блок-схему: Форма с проверкой на JavaScript"><img loading="lazy" src="diagrams/validation.svg" alt="Блок-схема: Форма с проверкой на JavaScript"></a>
+              <figcaption>Нажмите на схему, чтобы открыть её крупнее</figcaption>
+            </figure>
+          </div>
+        </article> <article class="card algorithm" id="algorithm-random">
+          <h3>14. Генератор случайных чисел</h3>
+          <div class="algorithm-grid">
+            <ol><li>Читаем минимум и максимум. Проверяем, что оба числа целые, от −1 000 000 до 1 000 000, а минимум не больше максимума.</li><li>Если границы неверны, показываем подсказку. Иначе берём <code>Math.random()</code> — число от 0 включительно до 1 невключительно.</li><li>Умножаем на количество возможных целых чисел, округляем вниз и прибавляем минимум: <code>Math.floor(Math.random() * (max - min + 1)) + min</code>.</li><li>Показываем число и добавляем его в историю из пяти последних результатов. Обе границы могут выпасть.</li></ol>
+            <figure>
+              <a href="diagrams/random.svg" aria-label="Открыть блок-схему: Генератор случайных чисел"><img loading="lazy" src="diagrams/random.svg" alt="Блок-схема: Генератор случайных чисел"></a>
+              <figcaption>Нажмите на схему, чтобы открыть её крупнее</figcaption>
+            </figure>
+          </div>
+        </article> <article class="card algorithm" id="algorithm-hover">
+          <h3>20. Анимация при наведении</h3>
+          <div class="algorithm-grid">
+            <ol><li>На <code>pointerenter</code> запоминаем, что указатель над площадкой; на <code>pointerleave</code> и <code>pointercancel</code> сбрасываем этот признак. Касание пальцем не считаем наведением.</li><li>Кнопка отдельно переключает закрепление эффекта. Она работает с клавиатуры и на телефоне.</li><li>Если есть наведение или закрепление, добавляем класс <code>is-active</code>. Иначе убираем его.</li><li>CSS плавно меняет положение, наклон и размер фигуры. При настройке уменьшенного движения переходы отключаются.</li></ol>
+            <figure>
+              <a href="diagrams/hover.svg" aria-label="Открыть блок-схему: Анимация при наведении"><img loading="lazy" src="diagrams/hover.svg" alt="Блок-схема: Анимация при наведении"></a>
+              <figcaption>Нажмите на схему, чтобы открыть её крупнее</figcaption>
+            </figure>
+          </div>
+        </article> <article class="card algorithm" id="algorithm-native">
+          <h3>09+. Дополнение: проверка без JavaScript</h3>
+          <div class="algorithm-grid">
+            <ol><li>В HTML задаём обязательность, длину и формат через <code>required</code>, <code>minlength</code>, <code>maxlength</code>, <code>pattern</code> и <code>type=&quot;email&quot;</code>.</li><li>При нажатии «Проверить» браузер сам проверяет поля. Для ошибки используется встроенная подсказка браузера; CSS <code>:user-invalid</code> показывает текст рядом с полем.</li><li>При успешной проверке открывается фрагмент <code>#native-success</code>, а CSS <code>:target</code> показывает сообщение. У полей нет <code>name</code>, их значения не попадают в адрес.</li></ol>
+            <figure>
+              <a href="diagrams/native.svg" aria-label="Открыть блок-схему: Дополнение: проверка без JavaScript"><img loading="lazy" src="diagrams/native.svg" alt="Блок-схема: Дополнение: проверка без JavaScript"></a>
+              <figcaption>Нажмите на схему, чтобы открыть её крупнее</figcaption>
+            </figure>
+          </div>
+        </article>
+    </section>
+    <section class="docs-section" id="questions" aria-labelledby="questions-title">
+      <h2 id="questions-title">Контрольные вопросы</h2>
+      <div class="question-list">
+        <details><summary>1. Какие типы данных в JavaScript существуют?</summary><p>Есть семь простых типов: <code>string</code> (строка), <code>number</code> (число), <code>bigint</code> (большое целое), <code>boolean</code> (истина или ложь), <code>undefined</code> (значение ещё не задано), <code>null</code> (явно заданное отсутствие значения), <code>symbol</code> (уникальный идентификатор). Остальные значения относятся к типу <code>object</code>. Массивы и функции тоже являются объектами.</p></details> <details><summary>2. Какой принцип работы JavaScript кода?</summary><p>Движок читает и выполняет код. В браузере скрипт может найти элементы страницы и назначить им обработчики событий. Например, после клика обработчик меняет число на экране. В обычном скрипте синхронные команды выполняются по порядку; обработчик запускается позже, когда произошло событие и поток освободился.</p></details> <details><summary>3. Какие операторы в JavaScript существуют?</summary><p>Арифметические: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>, <code>**</code>. Присваивание: <code>=</code>, <code>+=</code>, <code>-=</code>. Сравнение: <code>===</code>, <code>!==</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>. Логические: <code>&amp;&amp;</code>, <code>||</code>, <code>!</code>. Есть и другие: побитовые, условный <code>условие ? да : нет</code>, проверка типа <code>typeof</code>, увеличение <code>++</code> и уменьшение <code>--</code>.</p></details> <details><summary>4. Перечислите и опишите циклы, которые существуют в JavaScript.</summary><p><code>for</code> — повторяет действия, обычно со счётчиком. <code>while</code> — проверяет условие перед каждым проходом. <code>do...while</code> — сначала выполняет тело, поэтому проходит хотя бы один раз. <code>for...of</code> перебирает значения, например элементы массива. <code>for...in</code> перебирает перечисляемые строковые ключи объекта. <code>forEach()</code> — метод массива для обхода элементов, а не отдельная конструкция цикла.</p></details> <details><summary>5. Что такое массив? Разновидности массивов. Каким способом можно объявить и проинициализировать массив в JavaScript?</summary><p>Массив — упорядоченный список, у которого первый индекс равен 0. Бывают обычные одномерные и вложенные массивы, например таблица <code>[[1, 2], [3, 4]]</code>. В обычном массиве могут быть значения разных типов. Создать массив можно литералом <code>const a = [1, 2, 3]</code>, вызовом <code>Array.of(1, 2, 3)</code> или <code>Array.from(&quot;abc&quot;)</code>. Запись <code>new Array(3)</code> создаёт массив длины 3 с пустыми ячейками.</p></details> <details><summary>6. Что такое объекты в JavaScript? Как они хранятся и применяются. Приведите примеры.</summary><p>Объект объединяет свойства с именами и значениями: <code>const student = { name: &quot;Анна&quot;, group: &quot;ИВТ-5&quot; }</code>. Получить группу можно через <code>student.group</code>. Переменная хранит ссылку на объект; если присвоить её другой переменной, обе будут указывать на один объект. Объекты удобны для хранения связанных данных и методов.</p></details> <details><summary>7. Что такое DOM? Какие методы для работы с объектами DOM вы знаете?</summary><p>DOM — представление страницы в виде дерева узлов. <code>getElementById()</code> ищет по идентификатору, <code>querySelector()</code> — первый элемент по CSS-селектору, <code>querySelectorAll()</code> — все совпадения. <code>createElement()</code> создаёт узел, <code>append()</code> добавляет его, <code>remove()</code> удаляет. Свойство <code>textContent</code> меняет текст, а <code>classList.add()</code> добавляет класс.</p></details> <details><summary>8. Что такое событие в JavaScript и как происходит обработка событий? Какие события JavaScript вы знаете?</summary><p>Событие — сигнал о действии, например <code>click</code>, <code>input</code>, <code>submit</code>, <code>keydown</code> или <code>pointerenter</code>. Через <code>addEventListener()</code> назначаем функцию. Когда событие происходит, браузер вызывает её и передаёт объект события. У многих событий есть фаза захвата, целевой элемент и всплытие к родителям. Вызов <code>preventDefault()</code> отменяет стандартное действие, если событие допускает отмену.</p></details> <details><summary>9. Какие методы регулярных выражений в JavaScript вы знаете?</summary><p>У <code>RegExp</code> есть <code>test()</code> (возвращает true или false) и <code>exec()</code> (даёт данные совпадения или null). У строк есть методы, которые принимают регулярное выражение: <code>match()</code> и <code>matchAll()</code> ищут совпадения, <code>search()</code> возвращает индекс первого совпадения, <code>replace()</code> заменяет часть строки, <code>split()</code> делит строку по шаблону.</p></details>
+      </div>
+    </section>
+    <footer class="footer"><a href="../index.html">← К компонентам</a><a href="#top">Наверх ↑</a></footer>
+  </main>
+</body>
+</html>

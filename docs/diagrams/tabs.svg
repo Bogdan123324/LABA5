@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 365" role="img" aria-labelledby="title">
+  <title id="title">Вкладки</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#657896"/>
+    </marker>
+  </defs>
+  <style>
+    text { font: 600 16px system-ui, sans-serif; text-anchor: middle; }
+    .label { font-size: 14px; fill: #36527d; paint-order: stroke; stroke: #f8faff; stroke-width: 6px; stroke-linejoin: round; }
+  </style>
+  <rect width="560" height="365" rx="12" fill="#f8faff"/>
+  <g fill="none" stroke="#657896" stroke-width="1.7" stroke-linejoin="round">
+    <polyline points="280,51 280,69" marker-end="url(#arrow)"/>
+<polyline points="280,121 280,140" marker-end="url(#arrow)"/>
+<polyline points="280,188 280,210" marker-end="url(#arrow)"/>
+<polyline points="280,268 280,290" marker-end="url(#arrow)"/>
+<polyline points="465,323 527,323 527,164 445,164" marker-end="url(#arrow)"/>
+  </g>
+  <g stroke-width="1.3">
+    <rect x="202.5" y="13.0" width="155" height="38" rx="19.0" fill="#244fc8" stroke="#244fc8"/>
+<text x="280" y="37.5" fill="white">Начало</text>
+<rect x="115.0" y="69.0" width="330" height="52" rx="9" fill="#ffffff" stroke="#9eb1ce"/>
+<text x="280" y="100.5" fill="#192538">Показать первую панель</text>
+<rect x="115.0" y="140.0" width="330" height="48" rx="9" fill="#e5edff" stroke="#8da7e5"/>
+<text x="280" y="169.5" fill="#192538">Ждать клика или клавиши</text>
+<rect x="109.0" y="210.0" width="342" height="58" rx="9" fill="#ffffff" stroke="#9eb1ce"/>
+<text x="280" y="244.5" fill="#192538">Определить выбранную вкладку</text>
+<rect x="95.0" y="290.0" width="370" height="66" rx="9" fill="#e5edff" stroke="#8da7e5"/>
+<text x="280" y="318.5" fill="#192538">Показать её панель,</text>
+<text x="280" y="338.5" fill="#192538">остальные скрыть</text>
+  </g>
+
+</svg>

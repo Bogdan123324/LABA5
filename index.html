@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#182334">
+  <title>Лабораторная №5 · JS-мастерская</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/counter.js" defer></script>
+  <script src="assets/js/countdown.js" defer></script>
+  <script src="assets/js/accordion.js" defer></script>
+  <script src="assets/js/tabs.js" defer></script>
+  <script src="assets/js/validation.js" defer></script>
+  <script src="assets/js/random.js" defer></script>
+  <script src="assets/js/hover.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">К компонентам</a>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <span class="brand-icon" aria-hidden="true">JS</span>
+        <span><strong>JS-мастерская</strong><small>Лабораторная №5</small></span>
+      </a>
+      <nav class="component-nav" aria-label="Компоненты">
+        <p class="nav-label">Мой вариант</p>
+        <a href="#counter"><span>01</span> Счётчик</a>
+        <a href="#countdown"><span>03</span> Таймер</a>
+        <a href="#accordion"><span>05</span> Аккордеон</a>
+        <a href="#tabs"><span>08</span> Вкладки</a>
+        <a href="#validation"><span>09</span> Форма</a>
+        <a href="#random"><span>14</span> Генератор</a>
+        <a href="#hover"><span>20</span> Анимация</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <a href="docs/index.html">Схемы и теория <span aria-hidden="true">↗</span></a>
+        <a href="native-form.html">Форма без JS <span aria-hidden="true">↗</span></a>
+      </div>
+    </aside>
+
+    <main class="main" id="main">
+      <header class="hero">
+        <div>
+          <p class="eyebrow"><span class="dot"></span> Веб-программирование / ЛР 05</p>
+          <h1>Основы JavaScript</h1>
+          <p>Семь независимых компонентов. Попробуй каждый и посмотри, как JavaScript реагирует на действия на странице.</p>
+          <a class="button button-accent" href="docs/index.html">Схемы и контрольные вопросы <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="hero-code" aria-hidden="true">
+          <div class="code-top"><span></span><span></span><span></span><small>component.js</small></div>
+          <pre><span class="code-comment">// От клика до результата</span>
+button.<span class="code-method">addEventListener</span>(<span class="code-string">'click'</span>, () =&gt; {
+  count++;
+  output.textContent = count;
+});</pre>
+        </div>
+      </header>
+
+      <noscript><p class="notice">Включите JavaScript, чтобы попробовать компоненты. <a href="native-form.html">Форма на HTML и CSS</a> работает и без него.</p></noscript>
+
+      <div class="section-heading">
+        <h2>Компоненты</h2>
+        <span>Вариант: 1, 3, 5, 8, 9, 14, 20</span>
+      </div>
+
+      <div class="cards">
+        <!-- 01. Счётчик кликов -->
+        <section class="card" id="counter" aria-labelledby="counter-title">
+          <header class="card-heading">
+            <span class="number">01</span>
+            <div><h3 id="counter-title">Счётчик кликов</h3><p>Каждый клик добавляет единицу.</p></div>
+          </header>
+          <div class="metric counter-metric">
+            <output id="click-count" aria-label="Количество кликов">0</output>
+            <span>нажатий</span>
+          </div>
+          <div class="actions">
+            <button class="button button-primary" type="button" id="counter-add">+1 Клик</button>
+            <button class="button button-secondary" type="button" id="counter-reset" disabled>Сбросить</button>
+          </div>
+        </section>
+
+        <!-- 03. Таймер обратного отсчёта -->
+        <section class="card" id="countdown" aria-labelledby="timer-title">
+          <header class="card-heading">
+            <span class="number">03</span>
+            <div><h3 id="timer-title">Таймер</h3><p>Отсчёт с паузой и сбросом.</p></div>
+          </header>
+          <div class="timer-row">
+            <div class="metric timer-metric"><span id="timer-display" role="timer" aria-label="Оставшееся время">00:30</span></div>
+            <div class="field timer-field">
+              <label for="timer-seconds">Секунды</label>
+              <input id="timer-seconds" type="number" min="1" max="3599" step="1" required value="30" aria-describedby="timer-error">
+            </div>
+          </div>
+          <progress id="timer-progress" aria-label="Доля прошедшего времени" value="0" max="30"></progress>
+          <p class="field-error" id="timer-error" hidden></p>
+          <div class="actions">
+            <button class="button button-primary" id="timer-toggle" type="button">Старт</button>
+            <button class="button button-secondary" id="timer-reset" type="button">Сбросить</button>
+          </div>
+          <p class="status-line" id="timer-status" role="status">Задайте от 1 до 3599 секунд.</p>
+        </section>
+
+        <!-- 05. Аккордеон с сортировкой и перестановкой -->
+        <section class="card" id="accordion" aria-labelledby="accordion-title">
+          <header class="card-heading">
+            <span class="number">05</span>
+            <div><h3 id="accordion-title">Аккордеон</h3><p>Открывайте темы и меняйте их порядок.</p></div>
+          </header>
+          <div class="actions accordion-toolbar" aria-label="Сортировка">
+            <button class="button button-secondary button-small" id="sort-asc" type="button">А → Я</button>
+            <button class="button button-secondary button-small" id="sort-desc" type="button">Я → А</button>
+            <span class="hint">Стрелки справа двигают пункты</span>
+          </div>
+          <ul class="accordion-list" id="accordion-list">
+            <li class="accordion-item" data-title="События">
+              <div class="accordion-row">
+                <h4><button class="accordion-toggle" id="acc-events" type="button" aria-expanded="true" aria-controls="acc-panel-events"><span>События</span><span class="accordion-icon" aria-hidden="true"></span></button></h4>
+                <div class="reorder">
+                  <button type="button" data-step="-1" aria-label="Поднять События" disabled>↑</button>
+                  <button type="button" data-step="1" aria-label="Опустить События">↓</button>
+                </div>
+              </div>
+              <div class="accordion-content" id="acc-panel-events" role="region" aria-labelledby="acc-events">Клик или ввод текста вызывает событие. JavaScript может выполнить функцию в ответ.</div>
+            </li>
+            <li class="accordion-item" data-title="Массивы">
+              <div class="accordion-row">
+                <h4><button class="accordion-toggle" id="acc-arrays" type="button" aria-expanded="false" aria-controls="acc-panel-arrays"><span>Массивы</span><span class="accordion-icon" aria-hidden="true"></span></button></h4>
+                <div class="reorder">
+                  <button type="button" data-step="-1" aria-label="Поднять Массивы">↑</button>
+                  <button type="button" data-step="1" aria-label="Опустить Массивы">↓</button>
+                </div>
+              </div>
+              <div class="accordion-content" id="acc-panel-arrays" role="region" aria-labelledby="acc-arrays" hidden>Массив хранит элементы по порядку. Номер первого элемента — ноль.</div>
+            </li>
+            <li class="accordion-item" data-title="Объекты">
+              <div class="accordion-row">
+                <h4><button class="accordion-toggle" id="acc-objects" type="button" aria-expanded="false" aria-controls="acc-panel-objects"><span>Объекты</span><span class="accordion-icon" aria-hidden="true"></span></button></h4>
+                <div class="reorder">
+                  <button type="button" data-step="-1" aria-label="Поднять Объекты">↑</button>
+                  <button type="button" data-step="1" aria-label="Опустить Объекты" disabled>↓</button>
+                </div>
+              </div>
+              <div class="accordion-content" id="acc-panel-objects" role="region" aria-labelledby="acc-objects" hidden>Объект хранит свойства с именами: например, имя и группу студента.</div>
+            </li>
+          </ul>
+          <p class="status-line" id="accordion-status" role="status">Исходный порядок.</p>
+        </section>
+
+        <!-- 08. Вкладки -->
+        <section class="card" id="tabs" aria-labelledby="tabs-title">
+          <header class="card-heading">
+            <span class="number">08</span>
+            <div><h3 id="tabs-title">Вкладки</h3><p>Три части обычной веб-страницы.</p></div>
+          </header>
+          <div class="tab-list" role="tablist" aria-label="Части веб-страницы">
+            <button id="tab-html" type="button" role="tab" aria-selected="true" aria-controls="panel-html">HTML</button>
+            <button id="tab-css" type="button" role="tab" aria-selected="false" aria-controls="panel-css" tabindex="-1">CSS</button>
+            <button id="tab-js" type="button" role="tab" aria-selected="false" aria-controls="panel-js" tabindex="-1">JavaScript</button>
+          </div>
+          <div class="tab-panel" id="panel-html" role="tabpanel" aria-labelledby="tab-html" tabindex="0">
+            <h4>Структура</h4>
+            <p>HTML задаёт элементы: заголовки, кнопки и поля ввода.</p>
+            <pre><code>&lt;button&gt;Нажми меня&lt;/button&gt;</code></pre>
+          </div>
+          <div class="tab-panel" id="panel-css" role="tabpanel" aria-labelledby="tab-css" tabindex="0" hidden>
+            <h4>Оформление</h4>
+            <p>CSS определяет цвета, размеры и расположение элементов.</p>
+            <pre><code>button { border-radius: 8px; }</code></pre>
+          </div>
+          <div class="tab-panel" id="panel-js" role="tabpanel" aria-labelledby="tab-js" tabindex="0" hidden>
+            <h4>Поведение</h4>
+            <p>JavaScript реагирует на действие и обновляет страницу.</p>
+            <pre><code>button.addEventListener('click', countClick);</code></pre>
+          </div>
+        </section>
+
+        <!-- 09. Форма с проверкой на JavaScript -->
+        <section class="card" id="validation" aria-labelledby="validation-title">
+          <header class="card-heading">
+            <span class="number">09</span>
+            <div><h3 id="validation-title">Проверка формы</h3><p>JavaScript подсказывает, что исправить.</p></div>
+          </header>
+          <form id="validation-form" class="form-stack">
+            <div class="field">
+              <label for="student-name">Имя</label>
+              <input id="student-name" data-field="name" type="text" required maxlength="50" placeholder="Анна" aria-describedby="student-name-error">
+              <p class="field-error" id="student-name-error" hidden></p>
+            </div>
+            <div class="field">
+              <label for="student-email">Электронная почта</label>
+              <input id="student-email" data-field="email" type="email" required maxlength="120" placeholder="anna@example.com" aria-describedby="student-email-error">
+              <p class="field-error" id="student-email-error" hidden></p>
+            </div>
+            <div class="field">
+              <label for="student-group">Группа</label>
+              <input id="student-group" data-field="group" type="text" required maxlength="9" placeholder="ИВТ-5" aria-describedby="student-group-error">
+              <p class="field-error" id="student-group-error" hidden></p>
+            </div>
+            <div class="actions">
+              <button class="button button-primary" type="submit">Проверить</button>
+              <a class="text-link" href="native-form.html">Версия без JS ↗</a>
+            </div>
+            <p id="validation-status" class="status-line" role="status">Учебная форма. Данные никуда не отправляются.</p>
+          </form>
+        </section>
+
+        <!-- 14. Генератор случайных целых чисел -->
+        <section class="card" id="random" aria-labelledby="random-title">
+          <header class="card-heading">
+            <span class="number">14</span>
+            <div><h3 id="random-title">Генератор чисел</h3><p>Случайное целое число от минимума до максимума.</p></div>
+          </header>
+          <form id="random-form">
+            <div class="field-pair">
+              <div class="field">
+                <label for="random-min">Минимум</label>
+                <input id="random-min" type="number" min="-1000000" max="1000000" step="1" required value="1" aria-describedby="random-error">
+              </div>
+              <div class="field">
+                <label for="random-max">Максимум</label>
+                <input id="random-max" type="number" min="-1000000" max="1000000" step="1" required value="100" aria-describedby="random-error">
+              </div>
+            </div>
+            <p class="field-error" id="random-error" role="alert" hidden></p>
+            <div class="metric random-metric">
+              <output id="random-result" aria-label="Случайное число">—</output>
+              <span>результат</span>
+            </div>
+            <button class="button button-primary" type="submit">Сгенерировать</button>
+          </form>
+          <div class="history">
+            <span>Последние числа</span>
+            <ol id="random-history" class="history-list" aria-label="Последние числа"></ol>
+            <span id="random-history-empty">Пока нет</span>
+          </div>
+        </section>
+
+        <!-- 20. Анимация при наведении -->
+        <section class="card card-wide" id="hover" aria-labelledby="hover-title">
+          <div class="hover-copy">
+            <header class="card-heading">
+              <span class="number">20</span>
+              <div><h3 id="hover-title">Анимация при наведении</h3><p>Наведите указатель на площадку или включите эффект кнопкой.</p></div>
+            </header>
+            <button class="button button-primary" id="hover-toggle" type="button" aria-pressed="false">Включить эффект</button>
+            <p class="status-line" id="hover-status" role="status">Ожидает наведения.</p>
+          </div>
+          <div class="hover-stage" id="hover-stage">
+            <div class="orbit orbit-large" aria-hidden="true"></div>
+            <div class="orbit orbit-small" aria-hidden="true"></div>
+            <span class="orbit-dot orbit-dot-a" aria-hidden="true"></span>
+            <span class="orbit-dot orbit-dot-b" aria-hidden="true"></span>
+            <div class="hover-tile" aria-hidden="true">
+              <svg viewBox="0 0 60 60" width="52" height="52" fill="none">
+                <path d="M7 26 53 8 42 52 29 34 7 26Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+                <path d="m29 34 24-26M29 34l-4 13-5-16" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="stage-label">pointerenter / pointerleave</span>
+          </div>
+        </section>
+      </div>
+
+      <footer class="footer">
+        <span>Лабораторная работа №5 · HTML, CSS и JavaScript</span>
+        <a href="#main">Наверх ↑</a>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

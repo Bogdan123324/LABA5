@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#182334">
+  <title>Форма без JavaScript · Лабораторная №5</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <main class="standalone">
+    <a class="back-link" href="index.html#validation">← К компонентам</a>
+    <header class="page-heading">
+      <p class="eyebrow"><span class="dot"></span> ЛР 05 / Усложнение 09</p>
+      <h1>Форма без JavaScript</h1>
+      <p>Браузер проверяет поля по правилам HTML. CSS подсвечивает ошибки и показывает подсказку у поля.</p>
+    </header>
+    <p class="native-success" id="native-success" tabindex="-1">Все поля заполнены корректно. Учебные данные никуда не отправлены.</p>
+    <section class="card native-card" aria-labelledby="native-title">
+      <h2 id="native-title">Данные студента</h2>
+      <!-- Без name у полей: при успешной проверке значения не попадают в URL. -->
+      <form class="form-stack native-form" action="native-form.html#native-success" method="get">
+        <div class="field">
+          <label for="native-name">Имя</label>
+          <input id="native-name" type="text" required minlength="2" maxlength="50"
+            pattern="[А-Яа-яЁёA-Za-z]+(?:[ \-][А-Яа-яЁёA-Za-z]+)*"
+            placeholder="Анна" title="От 2 до 50 букв, пробелы и дефисы между словами"
+            aria-describedby="native-name-error">
+          <p class="field-error native-error" id="native-name-error">Введите имя из 2–50 символов. Используйте буквы; пробелы и дефисы допустимы между словами.</p>
+        </div>
+        <div class="field">
+          <label for="native-email">Электронная почта</label>
+          <input id="native-email" type="email" required maxlength="120" pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
+            placeholder="anna@example.com" title="Адрес вида anna@example.com"
+            aria-describedby="native-email-error">
+          <p class="field-error native-error" id="native-email-error">Введите адрес вида anna@example.com.</p>
+        </div>
+        <div class="field">
+          <label for="native-group">Группа</label>
+          <input id="native-group" type="text" required maxlength="9" pattern="[А-ЯЁA-Z]{2,6}-[0-9]{1,2}"
+            placeholder="ИВТ-5" title="От 2 до 6 заглавных букв, дефис и 1–2 цифры"
+            aria-describedby="native-group-error">
+          <p class="field-error native-error" id="native-group-error">Введите 2–6 заглавных букв, дефис и 1–2 цифры. Например, ИВТ-5.</p>
+        </div>
+        <button class="button button-primary" type="submit">Проверить</button>
+      </form>
+    </section>
+    <footer class="footer"><a href="docs/index.html#algorithm-validation">Как работает проверка →</a></footer>
+  </main>
+</body>
+</html>
